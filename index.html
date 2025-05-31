@@ -11,68 +11,49 @@
     }
 
     @keyframes glow {
-      0% {
-        box-shadow: 0 0 0px #22d3ee;
-      }
-      50% {
-        box-shadow: 0 0 10px #22d3ee;
-      }
-      100% {
-        box-shadow: 0 0 0px #22d3ee;
-      }
+      0% { box-shadow: 0 0 0px #22d3ee; }
+      50% { box-shadow: 0 0 10px #22d3ee; }
+      100% { box-shadow: 0 0 0px #22d3ee; }
     }
 
-    .glow {
-      animation: glow 0.8s ease-in-out;
+    .glow { animation: glow 0.8s ease-in-out; }
+
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: rgba(30, 41, 59, 0.9);
+      color: #a5f3fc;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 9999;
     }
 
-#toast {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  left: auto;
-  transform: none;
-  background-color: rgba(30, 41, 59, 0.9);
-  color: #a5f3fc;
-  padding: 12px 24px;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-#toast.show {
-  opacity: 1;
-}
-
-
+    #toast.show { opacity: 1; }
 
     .icon-container svg {
       opacity: 0;
       transition: opacity 0.3s ease;
     }
 
-    .icon-container .copy {
-      opacity: 1;
-    }
-
-    .icon-container.copied .copy {
-      opacity: 0;
-    }
-
-    .icon-container.copied .check {
-      opacity: 1;
-    }
+    .icon-container .copy { opacity: 1; }
+    .icon-container.copied .copy { opacity: 0; }
+    .icon-container.copied .check { opacity: 1; }
   </style>
 </head>
 <body class="text-gray-200 min-h-screen font-sans">
 
+  <!-- HEADER -->
   <header class="w-full fixed top-0 left-0 z-50 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <h1 class="text-lg font-semibold text-white">MineTopUA</h1>
+
+      <!-- Desktop Menu -->
       <nav class="hidden md:flex space-x-6 text-sm">
         <a href="index.html" class="text-gray-400 hover:text-blue-400 transition">Головна</a>
         <a href="rules.html" class="text-gray-400 hover:text-blue-400 transition">Правила</a>
@@ -80,30 +61,44 @@
         <a href="about.html" class="text-gray-400 hover:text-blue-400 transition">Адміністрація</a>
         <a href="contact.html" class="text-gray-400 hover:text-blue-400 transition">Контакти</a>
       </nav>
+
+      <!-- Burger -->
+      <button id="burger" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
     </div>
+
+    <!-- Mobile Menu -->
+    <nav id="mobileMenu" class="hidden md:hidden px-4 pb-4 space-y-2 bg-gray-800">
+      <a href="index.html" class="block text-gray-300 hover:text-blue-400">Головна</a>
+      <a href="rules.html" class="block text-gray-300 hover:text-blue-400">Правила</a>
+      <a href="donate.html" class="block text-gray-300 hover:text-blue-400">Донат</a>
+      <a href="about.html" class="block text-gray-300 hover:text-blue-400">Адміністрація</a>
+      <a href="contact.html" class="block text-gray-300 hover:text-blue-400">Контакти</a>
+    </nav>
   </header>
 
+  <!-- MAIN -->
   <section class="max-w-2xl mx-auto px-4 mt-32">
     <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-10 text-center shadow-2xl">
       <h2 class="text-4xl font-bold text-blue-400 mb-6">MineTopUA</h2>
-
       <div class="flex items-center justify-center bg-gray-700 rounded-xl overflow-hidden shadow-inner max-w-xs mx-auto border border-cyan-500/40">
         <span id="ipDisplay" class="px-4 py-2 font-mono text-sm text-white select-text w-full text-left">
           minetopua.hypixels.pl
         </span>
-        <button
-          onclick="copyIP()"
-          class="px-3 py-2 bg-cyan-600 hover:bg-cyan-700 text-white transition flex items-center justify-center"
-          title="Скопіювати IP"
-        >
+        <button onclick="copyIP()" class="px-3 py-2 bg-cyan-600 hover:bg-cyan-700 text-white transition flex items-center justify-center" title="Скопіювати IP">
           <span id="iconWrap" class="icon-container w-5 h-5 relative">
             <svg class="copy absolute inset-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
             <svg class="check absolute inset-0 w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </span>
@@ -112,6 +107,7 @@
     </div>
   </section>
 
+  <!-- About -->
   <main class="max-w-2xl mx-auto px-4 mt-12">
     <section class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-10 text-center shadow-2xl">
       <h2 class="text-xl font-bold mb-3 text-blue-400">Ласкаво просимо</h2>
@@ -119,60 +115,45 @@
         Це офіційний сайт MinetopUA — українського minecraft-серверу. Заходь, приєднуйся, грай як козак у піксельному світі!
       </p>
     </section>
-  </main>
 
-  <main class="max-w-2xl mx-auto px-4 mt-12">
-    <section class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-10 text-center shadow-2xl">
+    <section class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-10 text-center shadow-2xl mt-8">
       <h2 class="text-xl font-bold mb-3 text-blue-400">Історія Серверу</h2>
       <p class="text-gray-300">
-        Раніше я володів сервером на платформі Aternos під назвою MineTopUA. На жаль, 9 березня 2024 року сервер зазнав злому. Незважаючи на це, я не відступив і створив новий сервер, який отримав назву UA_Mine_Top. Цей сервер функціонував протягом місяця, після чого його назву було змінено на MineTopUA02 на честь першого проекту. 7 грудня 2024 року я повернувся до оригінальної назви MineTopUA та прийняв рішення перейти на платний хостинг задля забезпечення більш стабільної роботи та розширення функціональних можливостей. (shel_s_shel)
+        Раніше я володів сервером на платформі Aternos під назвою MineTopUA. На жаль, 9 березня 2024 року сервер зазнав злому...
       </p>
     </section>
   </main>
 
-<footer class="w-full mt-12 py-6 text-center text-sm text-gray-500">
-  <p>© <span id="year"></span> MinetopUA. Зроблено з душею в Україні.</p>
-  <p>
-    Webmade by 
-    <a id="sharkLink" href="#" target="_blank" class="text-cyan-400 hover:underline">
-      root_shark
-    </a>
-  </p>
-</footer>
+  <!-- FOOTER -->
+  <footer class="w-full mt-12 py-6 text-center text-sm text-gray-500">
+    <p>© <span id="year"></span> MinetopUA. Зроблено з душею в Україні.</p>
+    <p>Webmade by <a id="sharkLink" href="#" target="_blank" class="text-cyan-400 hover:underline">root_shark</a></p>
+  </footer>
 
-
-
-  <!-- Toast -->
+  <!-- TOAST -->
   <div id="toast">IP скопійовано!</div>
 
   <!-- JS -->
   <script>
-    
-  document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  fetch('https://raw.githubusercontent.com/GlibShark/env/refs/heads/main/website.txt')
-    .then(response => response.text())
-    .then(url => {
-      const link = document.getElementById('sharkLink');
-      if (url && link) {
-        link.href = url.trim();
-      }
-    })
-    .catch(error => {
-      console.error('an error was detected:', error);
-    });
-    
+    fetch('https://raw.githubusercontent.com/GlibShark/env/refs/heads/main/website.txt')
+      .then(response => response.text())
+      .then(url => {
+        const link = document.getElementById('sharkLink');
+        if (url && link) link.href = url.trim();
+      })
+      .catch(console.error);
+
     function copyIP() {
       const ip = 'minetopua.hypixels.pl';
       navigator.clipboard.writeText(ip).then(() => {
         const ipBlock = document.getElementById('ipDisplay');
         const toast = document.getElementById('toast');
         const iconWrap = document.getElementById('iconWrap');
-
         ipBlock.classList.add('glow');
         iconWrap.classList.add('copied');
         toast.classList.add('show');
-
         setTimeout(() => {
           iconWrap.classList.remove('copied');
           toast.classList.remove('show');
@@ -180,7 +161,9 @@
         }, 2000);
       });
     }
-  </script>
 
+  </script>
+  <script src="assets/ad.js"></script>
+  <script src="assets/th.js"></script>
 </body>
 </html>

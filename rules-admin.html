@@ -76,9 +76,11 @@
 </head>
 <body class="text-gray-200 min-h-screen font-sans">
 
-  <header class="w-full fixed top-0 left-0 z-50 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 shadow-sm">
+<header class="w-full fixed top-0 left-0 z-50 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       <h1 class="text-lg font-semibold text-white">MineTopUA</h1>
+
+      <!-- Desktop Menu -->
       <nav class="hidden md:flex space-x-6 text-sm">
         <a href="index.html" class="text-gray-400 hover:text-blue-400 transition">Головна</a>
         <a href="rules.html" class="text-gray-400 hover:text-blue-400 transition">Правила</a>
@@ -86,7 +88,25 @@
         <a href="about.html" class="text-gray-400 hover:text-blue-400 transition">Адміністрація</a>
         <a href="contact.html" class="text-gray-400 hover:text-blue-400 transition">Контакти</a>
       </nav>
+
+      <!-- Burger -->
+      <button id="burger" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
     </div>
+
+    <!-- Mobile Menu -->
+    <nav id="mobileMenu" class="hidden md:hidden px-4 pb-4 space-y-2 bg-gray-800">
+      <a href="index.html" class="block text-gray-300 hover:text-blue-400">Головна</a>
+      <a href="rules.html" class="block text-gray-300 hover:text-blue-400">Правила</a>
+      <a href="donate.html" class="block text-gray-300 hover:text-blue-400">Донат</a>
+      <a href="about.html" class="block text-gray-300 hover:text-blue-400">Адміністрація</a>
+      <a href="contact.html" class="block text-gray-300 hover:text-blue-400">Контакти</a>
+    </nav>
   </header>
 
     <main class="max-w-4xl mx-auto px-4 mt-32">
@@ -322,5 +342,7 @@
         console.error('an error was detected:', error);
       });
     </script>
+        <script src="assets/ad.js"></script>
+  <script src="assets/th.js"></script>
 </body>
 </html>
