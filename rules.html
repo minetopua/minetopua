@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MinetopUA</title>
+  <script src="assets/tailwind.js"></script>
+  <style>
+    body {
+      background-color: #0f172a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      width: 100%; /* Забезпечує повну ширину для контенту */
+    }
+
+    footer {
+      flex-shrink: 0;
+    }
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 0px #22d3ee;
+      }
+      50% {
+        box-shadow: 0 0 10px #22d3ee;
+      }
+      100% {
+        box-shadow: 0 0 0px #22d3ee;
+      }
+    }
+
+    .glow {
+      animation: glow 0.8s ease-in-out;
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      left: auto;
+      transform: none;
+      background-color: rgba(30, 41, 59, 0.9);
+      color: #a5f3fc;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    #toast.show {
+      opacity: 1;
+    }
+
+    .icon-container svg {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .icon-container .copy {
+      opacity: 1;
+    }
+
+    .icon-container.copied .copy {
+      opacity: 0;
+    }
+
+    .icon-container.copied .check {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="text-gray-200 font-sans">
+  <main>
+
+  <header class="w-full fixed top-0 left-0 z-50 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-lg font-semibold text-white">MineTopUA</h1>
+      <nav class="hidden md:flex space-x-6 text-sm">
+        <a href="index.html" class="text-gray-400 hover:text-blue-400 transition">Головна</a>
+        <a href="rules.html" class="text-gray-400 hover:text-blue-400 transition">Правила</a>
+        <a href="donate.html" class="text-gray-400 hover:text-blue-400 transition">Донат</a>
+        <a href="about.html" class="text-gray-400 hover:text-blue-400 transition">Адміністрація</a>
+        <a href="contact.html" class="text-gray-400 hover:text-blue-400 transition">Контакти</a>
+      </nav>
+    </div>
+  </header>
+
+    <section class="max-w-2xl mx-auto px-4 mt-32">
+      <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-10 text-center shadow-2xl">
+        <h2 class="text-4xl font-bold text-blue-400 mb-2">MineTopUA</h2>
+        <h3 class="text-lg text-gray-400">Правила</h3>
+      </div>
+    </section>
+
+    <section class="max-w-3xl mx-auto px-6 mt-10">
+      <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-10 text-center shadow-2xl">
+        <h2 class="text-3xl font-bold text-cyan-200 mb-8">Який тип правил треба переглянути?</h2>
+
+        <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 mb-6"> <a href="rules-player.html"
+             class="flex items-center justify-center space-x-4 bg-gray-700 hover:bg-indigo-700 transition-all duration-300 rounded-xl py-4 px-6 shadow-md hover:scale-105">
+            <img src="assets/user.svg" alt="player" class="w-8 h-8 filter brightness-0 invert"/>
+            <span class="text-lg font-semibold text-cyan-100">Гравці</span>
+          </a>
+
+          <a href="rules-admin.html"
+             class="flex items-center justify-center space-x-4 bg-gray-700 hover:bg-sky-700 transition-all duration-300 rounded-xl py-4 px-6 shadow-md hover:scale-105">
+            <img src="assets/admin.svg" alt="admin" class="w-8 h-8 filter brightness-0 invert"/>
+            <span class="text-lg font-semibold text-cyan-100">Адміністрація</span>
+          </a>
+        </div>
+
+        <div class="col-span-2 flex justify-center">
+          <a href="ygoda.html" 
+             class="flex items-center justify-center space-x-4 bg-gray-700 hover:bg-sky-700 transition-all duration-300 rounded-xl py-4 px-6 shadow-md hover:scale-105 max-w-xs">
+            <img src="assets/thirdparty.svg" alt="Telegram" class="w-8 h-8 filter brightness-0 invert"/>
+            <span class="text-lg font-semibold text-cyan-100">Користувацька Угода</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="w-full py-6 text-center text-sm text-gray-500">
+    <p>© <span id="year"></span> MinetopUA. Зроблено з душею в Україні.</p>
+    <p>
+      Webmade by
+      <a id="sharkLink" href="#" target="_blank" class="text-cyan-400 hover:underline">
+        root_shark
+      </a>
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    fetch('https://raw.githubusercontent.com/GlibShark/env/refs/heads/main/website.txt')
+      .then(response => response.text())
+      .then(url => {
+        const link = document.getElementById('sharkLink');
+        if (url && link) {
+          link.href = url.trim();
+        }
+      })
+      .catch(error => {
+        console.error('an error was detected:', error);
+      });
+  </script>
+</body>
+</html>

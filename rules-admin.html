@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MinetopUA - Правила для адміністрації</title>
+    <script src="assets/tailwind.js"></script>
+    <style>
+        body {
+            background-color: #0f172a;
+        }
+
+        /* Замість старих іконок — стрілка, яка повертається */
+        .section-icon {
+            width: 20px;
+            height: 20px;
+            stroke: #22d3ee; /* cyan-400 */
+            stroke-width: 2;
+            margin-right: 8px;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+            transform-origin: center;
+        }
+
+        h3 {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+        h3.active {
+            color: #22d3ee;
+            font-weight: 700;
+        }
+
+        /* Анімація висоти через JS, тому тут мінімальні стилі */
+        ul.collapsible {
+            overflow: hidden;
+            height: 0;
+            transition: height 0.4s ease;
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Відкритий стан */
+        ul.collapsible.open {
+            /* height задається JS */
+        }
+
+        /* Поворот іконки */
+        h3.active .section-icon {
+            transform: rotate(90deg);
+        }
+
+        .back-button {
+            background-color: transparent;
+            color: #22d3ee;
+            border: 1px solid #22d3ee;
+            border-radius: 0.375rem;
+            padding: 6px 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 1rem;
+            transition: background-color 0.2s ease;
+        }
+        .back-button:hover {
+            background-color: #22d3ee;
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen font-sans">
+
+  <header class="w-full fixed top-0 left-0 z-50 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-lg font-semibold text-white">MineTopUA</h1>
+      <nav class="hidden md:flex space-x-6 text-sm">
+        <a href="index.html" class="text-gray-400 hover:text-blue-400 transition">Головна</a>
+        <a href="rules.html" class="text-gray-400 hover:text-blue-400 transition">Правила</a>
+        <a href="donate.html" class="text-gray-400 hover:text-blue-400 transition">Донат</a>
+        <a href="about.html" class="text-gray-400 hover:text-blue-400 transition">Адміністрація</a>
+        <a href="contact.html" class="text-gray-400 hover:text-blue-400 transition">Контакти</a>
+      </nav>
+    </div>
+  </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-32">
+        <section class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-10 shadow-2xl">
+            <button class="back-button" onclick="location.href='rules.html'">
+                <svg xmlns="http://www.w3.org/2000/svg" class="section-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                Назад
+            </button>
+
+            <h2 class="text-3xl font-bold text-blue-400 mb-6 text-center">Правила для адміністрації</h2>
+
+            <div class="space-y-8 text-gray-300">
+                <div>
+                    <h3 class="collapsible-header" tabindex="0" data-index="0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="section-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                        1. Загальні правила
+                    </h3>
+                    <ul class="collapsible">
+                        <li>1.1 Адміністратори зобов’язані дотримуватися всіх правил, зазначених у цьому документі.</li>
+                        <li>1.2 Почавши виконувати обов'язки адміністратора, ви автоматично підтверджуєте свою згоду з цим набором правил.</li>
+                        <li>1.3 Адміністратор має право карати гравців тільки у відповідності до правил, а винятки потребують обґрунтування.</li>
+                        <li>1.4 Адміністрація несе відповідальність за свої дії на сервері, включно з рішеннями щодо покарань.</li>
+                        <li>1.5 Усі дії адміністрації мають бути прозорими та фіксуватися у логах для подальшого аналізу.</li>
+                        <li>1.6 Заборонено перевищувати свої повноваження, включно з необґрунтованими діями, що впливають на гравців.</li>
+                        <li>1.7 Адміністрація не має права поширювати інформацію про сторонні сервери або використовувати сервер для власної вигоди.</li>
+                        <li>1.8 Заборонено ображати, провокувати або дискримінувати гравців.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="collapsible-header" tabindex="0" data-index="1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="section-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                        2. Обов’язки адміністратора
+                    </h3>
+                    <ul class="collapsible">
+                        <li>2.1 Адміністратор повинен зберігати нейтральність у конфліктах між гравцями.</li>
+                        <li>2.2 Використання прав адміністратора для особистої вигоди (телепортація, видача ресурсів тощо) суворо заборонено.</li>
+                        <li>2.3 Заборонено змінювати або руйнувати будівлі гравців без їхнього дозволу, якщо це не пов'язано з порушенням правил.</li>
+                        <li>2.4 Адміністратор не має права видавати предмети, ресурси чи привілеї без дозволу старшої адміністрації.</li>
+                        <li>2.5 У разі виникнення проблем на сервері адміністратор зобов’язаний оперативно повідомити старшу адміністрацію.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="collapsible-header" tabindex="0" data-index="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="section-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                        3. Покарання
+                    </h3>
+                    <ul class="collapsible">
+                        <li>3.1 Адміністратор має чітко слідувати системі покарань, прописаній у правилах.</li>
+                        <li>3.2 Усі покарання повинні бути обґрунтованими та супроводжуватися доказами (скриншоти, відео тощо).</li>
+                        <li>3.3 Заборонено використовувати свої права для необґрунтованих банів, мутацій або кікання гравців.</li>
+                        <li>3.4 У разі спірних ситуацій адміністратор зобов’язаний звернутися до старшої адміністрації для прийняття рішення.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="collapsible-header" tabindex="0" data-index="3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="section-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                        4. Спілкування з гравцями
+                    </h3>
+                    <ul class="collapsible">
+                        <li>4.1 Адміністратор повинен бути ввічливим та дотримуватися етики під час спілкування.</li>
+                        <li>4.2 Заборонено ображати або провокувати гравців у чаті чи особистих повідомленнях.</li>
+                        <li>4.3 Адміністратор не має права дискримінувати гравців за будь-якими ознаками.</li>
+                        <li>4.4 У разі конфліктів адміністрація повинна залишатися нейтральною стороною та сприяти їхньому вирішенню.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="collapsible-header" tabindex="0" data-index="4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="section-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                        5. Використання привілеїв
+                    </h3>
+                    <ul class="collapsible">
+                        <li>5.1 Заборонено використовувати адміністративні можливості для власної гри (режим бога, креатив тощо).</li>
+                        <li>5.2 Усі дії адміністратора повинні мати обґрунтовану мету, пов’язану з підтримкою порядку на сервері.</li>
+                        <li>5.3 Заборонено втручатися у процес гри гравців без необхідності.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="collapsible-header" tabindex="0" data-index="5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="section-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                        6. Відповідальність
+                    </h3>
+                    <ul class="collapsible">
+                        <li>6.1 У разі порушення правил адміністрація несе відповідальність відповідно до рішення старшої адміністрації.</li>
+                        <li>6.2 Повторні порушення можуть призвести до зняття адміністративних прав.</li>
+                        <li>6.3 Адміністратор повинен надавати звіт про свої дії за запитом старшої адміністрації.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="collapsible-header" tabindex="0" data-index="6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="section-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                        7. Заборони
+                    </h3>
+                    <ul class="collapsible">
+                        <li>7.1 Заборонено використовувати сторонні програми, скрипти або моди для отримання переваг.</li>
+                        <li>7.2 Заборонено розголошувати конфіденційну інформацію про сервер або гравців.</li>
+                        <li>7.3 Заборонено вдавати із себе старшу адміністрацію або інших членів команди.</li>
+                        <li>7.4 Використання адміністративних прав для спричинення шкоди серверу суворо карається.</li>
+                    </ul>
+                </div>
+
+                <p class="text-gray-400 mt-8">Ці правила розроблені для забезпечення справедливості та належної роботи адміністрації. Порушення будь-якого пункту може призвести до дисциплінарних заходів.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="w-full mt-12 py-6 text-center text-sm text-gray-500">
+        <p>© <span id="year"></span> MineTopUA. Зроблено з душею в Україні.</p>
+        <p>
+            Webmade by
+            <a id="sharkLink" href="#" target="_blank" class="text-cyan-400 hover:underline">root_shark</a>
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const headers = document.querySelectorAll('.collapsible-header');
+        let lastToggleTime = 0;
+        const throttleDelay = 300; 
+
+        const savedIndex = localStorage.getItem('openSectionIndex');
+
+        headers.forEach(header => {
+            const index = header.dataset.index;
+            const content = header.nextElementSibling;
+
+            function openSection() {
+                content.style.display = 'block';
+                const height = content.scrollHeight + 'px';
+                content.style.height = '0px';
+
+
+                content.offsetHeight;
+
+                content.style.transition = 'height 0.4s ease';
+                content.style.height = height;
+
+                content.addEventListener('transitionend', () => {
+                    content.style.height = 'auto';
+                }, { once: true });
+
+                header.classList.add('active');
+            }
+
+            function closeSection() {
+                const height = content.scrollHeight + 'px';
+                content.style.height = height;
+
+                content.offsetHeight;
+
+                content.style.transition = 'height 0.4s ease';
+                content.style.height = '0px';
+
+                content.addEventListener('transitionend', () => {
+                    content.style.display = 'none';
+                }, { once: true });
+
+                header.classList.remove('active');
+            }
+
+            if (savedIndex === index) {
+                content.style.display = 'block';
+                content.style.height = 'auto';
+                header.classList.add('active');
+            } else {
+                content.style.display = 'none';
+                content.style.height = '0px';
+            }
+
+            header.addEventListener('click', e => {
+                if (Date.now() -
+                    lastToggleTime < throttleDelay) return;
+                lastToggleTime = Date.now();
+
+                if (header.classList.contains('active')) {
+                    closeSection();
+                    localStorage.removeItem('openSectionIndex');
+                } else {
+                    // Закриваємо всі, окрім цього
+                    headers.forEach(hdr => {
+                        if (hdr !== header && hdr.classList.contains('active')) {
+                            hdr.classList.remove('active');
+                            const ul = hdr.nextElementSibling;
+                            ul.style.height = '0px';
+                            ul.style.display = 'none';
+                        }
+                    });
+
+                    openSection();
+                    localStorage.setItem('openSectionIndex', index);
+                }
+            });
+
+            header.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    header.click();
+                }
+            });
+        });
+
+            fetch('https://raw.githubusercontent.com/GlibShark/env/refs/heads/main/website.txt')
+      .then(response => response.text())
+      .then(url => {
+        const link = document.getElementById('sharkLink');
+        if (url && link) {
+          link.href = url.trim();
+        }
+      })
+      .catch(error => {
+        console.error('an error was detected:', error);
+      });
+    </script>
+</body>
+</html>

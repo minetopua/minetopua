@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MineTopUA</title>
+  <script src="assets/tailwind.js"></script>
+  <style>
+    body {
+      background-color: #0f172a;
+    }
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 0px #22d3ee;
+      }
+      50% {
+        box-shadow: 0 0 10px #22d3ee;
+      }
+      100% {
+        box-shadow: 0 0 0px #22d3ee;
+      }
+    }
+
+    .glow {
+      animation: glow 0.8s ease-in-out;
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: rgba(30, 41, 59, 0.9);
+      color: #a5f3fc;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    #toast.show {
+      opacity: 1;
+    }
+
+    /* Кнопка назад в контенті */
+    .content-back-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      color: #22d3ee; /* cyan-400 */
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      background-color: #1e293b; /* gray-800 */
+      box-shadow: 0 0 8px #22d3eeaa;
+      margin-bottom: 16px;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .content-back-button:hover {
+      background-color: #0e172a;
+      box-shadow: 0 0 14px #22d3eeee;
+    }
+
+    .content-back-button svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      stroke-width: 2.5;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body class="text-gray-200 min-h-screen font-sans flex flex-col items-center justify-start pt-24 px-4">
+
+  <header class="w-full fixed top-0 left-0 z-50 bg-gray-900/80 backdrop-blur-sm border-b border-gray-700 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-lg font-semibold text-white">MineTopUA</h1>
+      <nav class="hidden md:flex space-x-6 text-sm">
+        <a href="index.html" class="text-gray-400 hover:text-blue-400 transition">Головна</a>
+        <a href="rules.html" class="text-gray-400 hover:text-blue-400 transition">Правила</a>
+        <a href="donate.html" class="text-gray-400 hover:text-blue-400 transition">Донат</a>
+        <a href="about.html" class="text-gray-400 hover:text-blue-400 transition">Адміністрація</a>
+        <a href="contact.html" class="text-gray-400 hover:text-blue-400 transition">Контакти</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-3xl w-full px-4">
+
+    <!-- Кнопка назад, що в контенті, зверху зліва -->
+    <a href="donate.html" class="content-back-button" aria-label="Назад до Донат" title="Назад">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+      Назад
+    </a>
+
+    <!-- Сітка з коїнами -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+
+      <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-8 text-center shadow-2xl">
+        <h2 class="text-2xl font-bold text-blue-400 flex items-center justify-center mb-4">
+          <img src="assets/coin.png" alt="Монетка" class="coin-icon" style="width:24px; height:24px; margin-right:8px;" />
+          10₴
+        </h2>
+        <p class="text-white mb-6">Ціна: 3 Грн</p>
+        <button
+          class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition"
+          onclick="buyCoins('10', 1)"
+        >
+          Купити
+        </button>
+      </div>
+
+      <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-8 text-center shadow-2xl">
+        <h2 class="text-2xl font-bold text-blue-400 flex items-center justify-center mb-4">
+          <img src="assets/coin.png" alt="Монетка" class="coin-icon" style="width:24px; height:24px; margin-right:8px;" />
+          100₴
+        </h2>
+        <p class="text-white mb-6">Ціна: 33 Грн</p>
+        <button
+          class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition"
+          onclick="buyCoins('100', 3)"
+        >
+          Купити
+        </button>
+      </div>
+
+      <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-8 text-center shadow-2xl">
+        <h2 class="text-2xl font-bold text-blue-400 flex items-center justify-center mb-4">
+          <img src="assets/coin.png" alt="Монетка" class="coin-icon" style="width:24px; height:24px; margin-right:8px;" />
+          500₴
+        </h2>
+        <p class="text-white mb-6">Ціна: 166 Грн</p>
+        <button
+          class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition"
+          onclick="buyCoins('500', 16)"
+        >
+          Купити
+        </button>
+      </div>
+
+      <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-8 text-center shadow-2xl">
+        <h2 class="text-2xl font-bold text-blue-400 flex items-center justify-center mb-4">
+          <img src="assets/coin.png" alt="Монетка" class="coin-icon" style="width:24px; height:24px; margin-right:8px;" />
+          1000₴
+        </h2>
+        <p class="text-white mb-6">Ціна: 333 Грн</p>
+        <button
+          class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition"
+          onclick="buyCoins('1000', 33)"
+        >
+          Купити
+        </button>
+      </div>
+
+      <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-8 text-center shadow-2xl">
+        <h2 class="text-2xl font-bold text-blue-400 flex items-center justify-center mb-4">
+          <img src="assets/coin.png" alt="Монетка" class="coin-icon" style="width:24px; height:24px; margin-right:8px;" />
+          5000₴
+        </h2>
+        <p class="text-white mb-6">Ціна: 1666 Грн</p>
+        <button
+          class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition"
+          onclick="buyCoins('5000', 166)"
+        >
+          Купити
+        </button>
+      </div>
+
+      <div class="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-2xl p-8 text-center shadow-2xl">
+        <h2 class="text-2xl font-bold text-blue-400 flex items-center justify-center mb-4">
+          <img src="assets/coin.png" alt="Монетка" class="coin-icon" style="width:24px; height:24px; margin-right:8px;" />
+          100000₴
+        </h2>
+        <p class="text-white mb-6">Ціна: 3333 Грн</p>
+        <button
+          class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl font-semibold transition"
+          onclick="buyCoins('100000', 333)"
+        >
+          Купити
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Toast -->
+  <div id="toast">Товар додано до кошика!</div>
+
+  <footer class="w-full mt-16 py-6 text-center text-sm text-gray-500">
+    <p>© <span id="year"></span> MinetopUA. Зроблено з душею в Україні.</p>
+    <p>
+      Webmade by 
+      <a id="sharkLink" href="#" target="_blank" class="text-cyan-400 hover:underline">
+        root_shark
+      </a>
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    fetch('https://raw.githubusercontent.com/GlibShark/env/refs/heads/main/website.txt')
+      .then(response => response.text())
+      .then(url => {
+        const link = document.getElementById('sharkLink');
+        if (url && link) {
+          link.href = url.trim();
+        }
+      })
+      .catch(error => {
+        console.error('an error was detected:', error);
+      });
+
+    function buyCoins(amount, price) {
+      window.open('pay.html', '_blank');
+    }
+  </script>
+
+</body>
+</html>
